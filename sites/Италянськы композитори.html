@@ -1,0 +1,826 @@
+<!doctype html> 
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Італійські композитори Ренесансу</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  
+:root {
+  --bg-color: #1a0a1a;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-color: #f0e6f6;
+  --muted-text: #b0a0b0;
+  --accent-color: #e0b0ff;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --hover-color: #c090e0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(217, 70, 239, 0.08) 100%);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.background-video video {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%; min-height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) grayscale(0.2);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px 30px;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  padding: 40px 30px;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px var(--shadow-color);
+  backdrop-filter: blur(10px);
+  margin-bottom: 40px;
+}
+
+.brand {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.brand .logo img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px var(--shadow-color);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .brand {
+    flex-direction: column;
+    align-items: center;
+  }
+  .brand .logo img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Заголовки і текст */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 0; color: var(--accent-color);
+}
+h1 { font-size: 2rem; line-height: 1.2; }
+h2 { font-size: 1.6rem; margin-bottom: 15px; }
+h3 { font-size: 1.3rem; margin-bottom: 10px; }
+
+p.lead { margin: 8px 0 15px; color: var(--muted-text); font-size: 1.1rem; }
+
+/* GRID КАРТОК */
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* растягивает карточку, плеер прижимается к низу */
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.listen-section {
+  margin-top: auto; /* плеер всегда снизу */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.meta { font-size: 0.95rem; color: var(--muted-text); margin-bottom: 12px; }
+.bio { font-size: 1rem; color: var(--text-color); margin-top: 12px; }
+.tags { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+.tag {
+  background: rgba(255,255,255,0.06);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--muted-text);
+  border: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.tag:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  border-color: var(--accent-color);
+}
+
+/* Кнопки */
+.actions { margin-top: 20px; display: flex; gap: 12px; }
+.btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn.primary {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  box-shadow: 0 4px 15px rgba(224, 176, 255, 0.4);
+}
+.btn.primary:hover { background: var(--hover-color); }
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--muted-text);
+}
+.btn.ghost:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(224, 176, 255, 0.1);
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: stretch; /* растягиваем блоки по высоте */
+  justify-content: center;
+}
+
+.hero .text,
+.hero .art {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* чтобы контент занимал всю высоту */
+}
+
+.hero .art img {
+  width: 100%;
+  height: 100%; /* растягиваем изображение по высоте блока */
+  object-fit: cover; /* сохраняем пропорции, обрезая при необходимости */
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+
+/* Картинки в картках композиторів одного розміру */
+main .card img {
+  width: 100%;
+  height: 250px;  /* однакова висота для всіх */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 1024px) {
+  main.grid {
+    grid-template-columns: repeat(2, 1fr); /* дві колонки на середніх екранах */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero { flex-direction: column; }
+  .hero .art img { width: 100%; height: auto; margin-top: 20px; }
+  main.grid {
+    grid-template-columns: 1fr; /* одна колонка на мобільних */
+  }
+  main .card img {
+    height: 200px; /* трохи менше для мобільних */
+  }
+}
+
+section.card { margin-top: 40px; padding: 30px; }
+
+footer {
+  margin-top: 50px;
+  color: var(--muted-text);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 30px;
+  background: var(--card-bg);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px var(--shadow-color);
+  backdrop-filter: blur(8px);
+}
+
+/* Специфічні стилі для нових секцій */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin: 25px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-color);
+}
+
+.timeline-year {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.quote {
+  border-left: 3px solid var(--accent-color);
+  padding-left: 15px;
+  margin: 20px 0;
+  font-style: italic;
+  color: var(--muted-text);
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.work-item {
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.work-title {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.work-year {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+}
+
+.work-meta {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  margin-bottom: 5px;
+}
+
+.work-desc {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.card ul {
+  padding-left: 20px;
+  margin: 15px 0;
+}
+
+.card li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Аудіо плеєр */
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* выравнивание по центру */
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px var(--shadow-color);
+  width: 100%;
+  text-align: center; /* чтобы текст и таймер тоже был по центру */
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center; /* выравнивание кнопки и прогресса по центру */
+  width: 100%;
+}
+
+.audio-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+.audio-btn:hover { background: var(--hover-color); transform: scale(1.1); }
+
+.audio-progress {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.audio-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-color);
+  border-radius: 3px;
+  transition: width 0.1s;
+}
+
+.audio-time {
+  font-size: 0.8rem;
+  color: var(--muted-text);
+  margin-top: 8px; /* отступ сверху для таймера */
+  text-align: center; /* по центру */
+}
+
+.music-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.music-link:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.listen-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+</style>
+</head>
+<body>
+<div class="background-video">
+  <video autoplay loop muted playsinline>
+    <source src="Мопс лижет экран мемасик.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="container">
+<header>
+  <div class="brand">
+    <div class="logo">
+      <img src="photo_2025-10-24_01-29-33.jpg" alt="">
+    </div>
+    <div>
+      <h1>Італійські композитори Ренесансу</h1>
+      <p class="lead">Від поліфонії Палестріни до перших опер Монтеверді — історія музичного відродження</p>
+    </div>
+    <button class="btn ghost" onclick="window.print()">Друк</button>
+  </div>
+</header>
+<section class="hero">
+  <div class="text card">
+    <h2>Коротко про епоху</h2>
+    <p class="lead">
+      Ренесанс (XIV–XVI ст.) — епоха, коли музика перестала бути лише церковною справою і стала мистецтвом гармонії та людських емоцій.
+    </p>
+    <div class="tags">
+      <span class="tag">Поліфонія</span>
+      <span class="tag">Меса</span>
+      <span class="tag">Мадригал</span>
+      <span class="tag">Рання опера</span>
+    </div>
+  </div>
+
+  <div class="art">
+    <img src="madonna.jpg" alt="Ренесанс мистецтво">
+  </div>
+</section>
+
+
+<main class="grid">
+  <!-- Палестріна -->
+  <article class="card">
+    <h3>Джованні Палестріна</h3>
+    <img src="1.webp" alt="">
+    <p>(1525–1594) — "спаситель поліфонії"</p>
+<p>Його музика — символ гармонійної рівноваги. Палестріна служив у Римі, писав меси й мотети, де всі голоси зливаються в чисте єдине звучання. Він вмів створювати відчуття спокою та величі водночас, використовуючи складні поліфонічні структури, але зберігаючи прозорість кожного голосу. Його композиції вплинули на розвиток музики Ренесансу в Європі та стали стандартом для церковної музики на століття.</p>
+    <div class="listen-section">
+      <h4>🎵 Missa Papae Marcelli - Kyrie</h4>
+      <div class="audio-player" id="player-palestrina">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('palestrina')">▶</button>
+          <div class="audio-progress" onclick="setProgress('palestrina', event)">
+            <div class="audio-progress-bar" id="palestrina-progress"></div>
+          </div>
+          <div class="audio-time" id="palestrina-time">0:00 / 0:00</div>
+        </div>
+        <audio id="palestrina-audio" src="videoplayback.weba"></audio>
+      </div>
+    </div>
+  </article>
+
+  <!-- Монтеверді -->
+  <article class="card">
+    <h3>Клаудіо Монтеверді</h3>
+    <img src="Без названия.webp" alt="">
+<p>(1567–1643) — народження опери</p>
+<p>Його опера <em>L'Orfeo</em> (1607) — перша велика опера в історії. Монтеверді поєднав в ній поліфонію Ренесансу з новими драматичними виразними засобами, створивши перший справжній музичний театр. Він активно експериментував з контрастом голосів і оркестрового супроводу, розвивав жанр мадригала, додавав емоційність та виразність у вокальні партії. Його роботи вплинули на наступні покоління
+
+    <div class="listen-section">
+      <h4>🎵 L'Orfeo - Toccata</h4>
+      <div class="audio-player" id="player-monteverdi">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('monteverdi')">▶</button>
+          <div class="audio-progress" onclick="setProgress('monteverdi', event)">
+            <div class="audio-progress-bar" id="monteverdi-progress"></div>
+          </div>
+          <div class="audio-time" id="monteverdi-time">0:00 / 0:00</div>
+        </div>
+        <audio id="monteverdi-audio" src="monteverdi.mp4"></audio>
+      </div>
+    </div>
+  </article>
+
+  <!-- Габріелі -->
+  <article class="card">
+    <h3>Джованні Габріелі</h3>
+    <img src="3.webp" alt="">
+    <p>(1557–1612) — венеційський звук простору</p>
+<p>У соборі Святого Марка створював музику для кількох хорів, що співали одночасно, створюючи об’ємний ефект. Габріелі майстерно поєднував різні інструменти та голоси, використовуючи просторову акустику храму, щоб підсилити драматизм звучання. Його композиції відзначаються яскравими контрастами динаміки, ритмічними варіаціями та величною святковою атмосферою, що вплинула на розвиток венеційської школи та європейської музики того часу.</p>
+    <div class="listen-section">
+      <h4>🎺 Canzoni per sonare</h4>
+      <div class="audio-player" id="player-gabrieli">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('gabrieli')">▶</button>
+          <div class="audio-progress" onclick="setProgress('gabrieli', event)">
+            <div class="audio-progress-bar" id="gabrieli-progress"></div>
+          </div>
+          <div class="audio-time" id="gabrieli-time">0:00 / 0:00</div>
+        </div>
+        <audio id="gabrieli-audio" src="Canzoni per sonare.m4a"></audio>
+      </div>
+    </div>
+  </article>
+
+  <!-- Маренціо -->
+  <article class="card">
+    <h3>Лука Маренціо</h3>
+    <img src="4.webp" alt="">
+    <p>(1553–1599) — майстер мадригалу</p>
+<p>У його мадригалах музика точно відображає зміст поезії — справжній живопис звуками. Маренціо майстерно передавав емоції через мелодію і гармонію, використовуючи дисонанси, ритмічні варіації та контрастні тембри. Його твори вплинули на розвиток італійського мадригала та вокальної музики, поєднуючи лірику й драматизм та надихаючи слухачів і виконавців до сьогодні.</p>
+    <div class="listen-section">
+      <h4>🎵 Solo e pensoso</h4>
+      <div class="audio-player" id="player-marenzio">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('marenzio')">▶</button>
+          <div class="audio-progress" onclick="setProgress('marenzio', event)">
+            <div class="audio-progress-bar" id="marenzio-progress"></div>
+          </div>
+          <div class="audio-time" id="marenzio-time">0:00 / 0:00</div>
+        </div>
+        <audio id="marenzio-audio" src="marenzio.m4a"></audio>
+      </div>
+    </div>
+  </article>
+
+  <!-- Лассо -->
+  <article class="card">
+    <h3>Орландо ді Лассо</h3>
+    <img src="5.webp" alt="">
+    <p>(1532–1594) — універсальний майстер поліфонії</p>
+<p>Один із найпопулярніших композиторів XVI століття, що писав релігійні й світські твори. Лассо відзначався універсальністю стилю та майстерністю у поліфонії, поєднуючи витончену гармонію з емоційною виразністю. Його твори включають меси, мотети, мадригали та світські пісні, які демонструють глибоке розуміння людських почуттів та драматичної напруги. Він вплину
+    <div class="listen-section">
+      <h4>🎵 Matona mia cara</h4>
+      <div class="audio-player" id="player-lasso">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('lasso')">▶</button>
+          <div class="audio-progress" onclick="setProgress('lasso', event)">
+            <div class="audio-progress-bar" id="lasso-progress"></div>
+          </div>
+          <div class="audio-time" id="lasso-time">0:00 / 0:00</div>
+        </div>
+        <audio id="lasso-audio" src="lasso.mp4"></audio>
+      </div>
+    </div>
+  </article>
+
+  <!-- Каччіні -->
+  <article class="card">
+    <h3>Джуліо Каччіні</h3>
+    <img src="images.jpg" alt="">
+    <p>(1551–1618) — народження сольного співу</p>
+<p>Один із перших авторів арій для одного голосу з акомпанементом — прообраз майбутньої опери. Каччіні вдосконалював сольний спів, поєднуючи виразну мелодію з гармонійним супроводом, створюючи твори, що передавали емоції та драматизм. Його арії стали основою розвитку ранньої італійської опери та вплинули на наступні покоління композиторів.</p>
+    <div class="listen-section">
+      <h4>🎵 Amarilli mia bella</h4>
+      <div class="audio-player" id="player-caccini">
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="toggleAudio('caccini')">▶</button>
+          <div class="audio-progress" onclick="setProgress('caccini', event)">
+            <div class="audio-progress-bar" id="caccini-progress"></div>
+          </div>
+          <div class="audio-time" id="caccini-time">0:00 / 0:00</div>
+        </div>
+        <audio id="caccini-audio" src="caccini.mp4"></audio>
+      </div>
+    </div>
+  </article>
+</main>
+
+
+
+
+<!-- Секція для прослуховування -->
+<section class="card">
+  <h2>🎧 Музична колекція Ренесансу</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>Для знайомства з епохою</h3>
+      <div class="works-grid">
+        <div class="work-item">
+          <div class="work-title">Missa Papae Marcelli</div>
+          <div class="work-meta">Палестріна · 1567</div>
+          <a href="https://www.youtube.com/watch?v=6RfiPXiXneY" target="_blank" class="tag">Слухати</a>
+        </div>
+        <div class="work-item">
+          <div class="work-title">L'Orfeo</div>
+          <div class="work-meta">Монтеверді · 1607</div>
+          <a href="https://www.youtube.com/watch?v=jUep3sqe35o" target="_blank" class="tag">Слухати</a>
+        </div>
+        <div class="work-item">
+          <div class="work-title">Canzoni per sonare</div>
+          <div class="work-meta">Габріелі · 1608</div>
+          <a href="https://www.youtube.com/watch?v=5P02l8s8b9M" target="_blank" class="tag">Слухати</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Для поглибленого вивчення</h3>
+      <div class="works-grid">
+        <div class="work-item">
+          <div class="work-title">Lagrime di San Pietro</div>
+          <div class="work-meta">Лассо · 1594</div>
+          <a href="https://www.youtube.com/watch?v=i4_Kx1lLhVA" target="_blank" class="tag">Слухати</a>
+        </div>
+        <div class="work-item">
+          <div class="work-title">Le nuove musiche</div>
+          <div class="work-meta">Каччіні · 1602</div>
+          <a href="https://www.youtube.com/watch?v=iCssWvDj1u4" target="_blank" class="tag">Слухати</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Інші секції... -->
+
+<footer>
+
+  <p>Матеріали сайту призначені для освітніх цілей.</p>
+  <div class="tags" style="justify-content: center; margin-top: 15px;">
+    <a href="https://imslp.org" target="_blank" class="tag">IMSLP - Вільні ноти</a>
+    <a href="https://www.metmuseum.org" target="_blank" class="tag">Музей мистецтв</a>
+  </div>
+</footer>
+</div>
+
+<script>
+// Простий аудіо плеєр для демонстрації
+const audioData = {
+  palestrina: {
+    duration: 272, // секунди
+    currentTime: 0,
+    playing: false,
+    interval: null
+  },
+  monteverdi: {
+    duration: 135, // секунди
+    currentTime: 0,
+    playing: false,
+    interval: null
+  }
+};
+
+function toggleAudio(composer) {
+  const data = audioData[composer];
+  
+  if (data.playing) {
+    // Пауза
+    data.playing = false;
+    clearInterval(data.interval);
+    document.querySelector(`#${composer}-player .audio-btn`).textContent = '▶';
+  } else {
+    // Відтворення
+    data.playing = true;
+    document.querySelector(`#${composer}-player .audio-btn`).textContent = '⏸';
+    
+    data.interval = setInterval(() => {
+      if (data.currentTime >= data.duration) {
+        stopAudio(composer);
+        return;
+      }
+      data.currentTime++;
+      updateProgress(composer);
+    }, 1000);
+  }
+}
+
+function stopAudio(composer) {
+  const data = audioData[composer];
+  data.playing = false;
+  data.currentTime = 0;
+  clearInterval(data.interval);
+  document.querySelector(`#${composer}-player .audio-btn`).textContent = '▶';
+  updateProgress(composer);
+}
+
+function updateProgress(composer) {
+  const data = audioData[composer];
+  const progress = (data.currentTime / data.duration) * 100;
+  const progressBar = document.getElementById(`${composer}-progress`);
+  const timeDisplay = document.getElementById(`${composer}-time`);
+  
+  progressBar.style.width = `${progress}%`;
+  
+  const currentTimeStr = formatTime(data.currentTime);
+  const durationStr = formatTime(data.duration);
+  timeDisplay.textContent = `${currentTimeStr} / ${durationStr}`;
+}
+
+function setProgress(composer, event) {
+  const data = audioData[composer];
+  const progressBar = event.currentTarget;
+  const rect = progressBar.getBoundingClientRect();
+  const percent = (event.clientX - rect.left) / rect.width;
+  
+  data.currentTime = Math.floor(percent * data.duration);
+  updateProgress(composer);
+}
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Ініціалізація прогресу
+updateProgress('palestrina');
+updateProgress('monteverdi');
+
+
+const composers = ['palestrina','monteverdi','gabrieli','marenzio','lasso','caccini'];
+
+function toggleAudio(composer) {
+  const audio = document.getElementById(`${composer}-audio`);
+  const btn = document.querySelector(`#player-${composer} .audio-btn`);
+  
+  if(audio.paused){
+    // остановим все остальные плееры
+    composers.forEach(c => {
+      if(c !== composer){
+        document.getElementById(`${c}-audio`).pause();
+        document.querySelector(`#player-${c} .audio-btn`).textContent = '▶';
+      }
+    });
+    audio.play();
+    btn.textContent = '⏸';
+  } else {
+    audio.pause();
+    btn.textContent = '▶';
+  }
+
+  audio.ontimeupdate = () => updateProgress(composer);
+  audio.onended = () => {
+    btn.textContent = '▶';
+    updateProgress(composer);
+  };
+}
+
+function updateProgress(composer){
+  const audio = document.getElementById(`${composer}-audio`);
+  const bar = document.getElementById(`${composer}-progress`);
+  const time = document.getElementById(`${composer}-time`);
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  bar.style.width = percent + '%';
+
+  const mins = Math.floor(audio.currentTime / 60);
+  const secs = Math.floor(audio.currentTime % 60).toString().padStart(2,'0');
+  const durMins = Math.floor(audio.duration / 60) || 0;
+  const durSecs = Math.floor(audio.duration % 60).toString().padStart(2,'0');
+  time.textContent = `${mins}:${secs} / ${durMins}:${durSecs}`;
+}
+
+function setProgress(composer, e){
+  const audio = document.getElementById(`${composer}-audio`);
+  const rect = e.currentTarget.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = percent * audio.duration;
+  updateProgress(composer);
+}
+
+</script>
+</body>
+</html>
