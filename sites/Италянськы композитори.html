@@ -64,8 +64,8 @@ body::before {
 
 .container {
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 40px 30px;
+  margin: 0 auto;
+  padding: 20px 15px;
 }
 
 /* HEADER */
@@ -75,18 +75,19 @@ header {
   align-items: center;
   justify-content: space-between;
   background: var(--card-bg);
-  padding: 40px 30px;
+  padding: 25px 20px;
   border-radius: 15px;
   border: 1px solid var(--border-color);
   box-shadow: 0 8px 30px var(--shadow-color);
   backdrop-filter: blur(10px);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .brand {
   display: flex;
   gap: 20px;
   align-items: center;
+  flex: 1;
 }
 
 .brand .logo img {
@@ -99,23 +100,12 @@ header {
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-  .brand {
-    flex-direction: column;
-    align-items: center;
-  }
-  .brand .logo img {
-    width: 60px;
-    height: 60px;
-  }
-}
-
 /* Заголовки і текст */
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   margin: 0; color: var(--accent-color);
 }
-h1 { font-size: 2rem; line-height: 1.2; }
+h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 10px; }
 h2 { font-size: 1.6rem; margin-bottom: 15px; }
 h3 { font-size: 1.3rem; margin-bottom: 10px; }
 
@@ -132,14 +122,19 @@ main.grid {
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* растягивает карточку, плеер прижимается к низу */
+  justify-content: space-between;
   background: var(--card-bg);
-  padding: 30px;
+  padding: 25px;
   border-radius: 15px;
   box-shadow: 0 6px 25px var(--shadow-color);
   border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .card img {
@@ -153,13 +148,12 @@ main.grid {
 }
 
 .listen-section {
-  margin-top: auto; /* плеер всегда снизу */
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
 }
-
 
 .meta { font-size: 0.95rem; color: var(--muted-text); margin-bottom: 12px; }
 .bio { font-size: 1rem; color: var(--text-color); margin-top: 12px; }
@@ -191,6 +185,7 @@ main.grid {
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
+  font-family: 'Montserrat', sans-serif;
 }
 .btn.primary {
   background: var(--accent-color);
@@ -214,7 +209,7 @@ main.grid {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  align-items: stretch; /* растягиваем блоки по высоте */
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -223,23 +218,22 @@ main.grid {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* чтобы контент занимал всю высоту */
+  justify-content: space-between;
 }
 
 .hero .art img {
   width: 100%;
-  height: 100%; /* растягиваем изображение по высоте блока */
-  object-fit: cover; /* сохраняем пропорции, обрезая при необходимости */
+  height: 100%;
+  object-fit: cover;
   border-radius: 15px;
   border: 1px solid var(--border-color);
   box-shadow: 0 6px 20px var(--shadow-color);
 }
 
-
 /* Картинки в картках композиторів одного розміру */
 main .card img {
   width: 100%;
-  height: 250px;  /* однакова висота для всіх */
+  height: 250px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 15px;
@@ -247,31 +241,152 @@ main .card img {
   border: 1px solid var(--border-color);
 }
 
+/* АДАПТАЦІЯ */
 @media (max-width: 1024px) {
   main.grid {
-    grid-template-columns: repeat(2, 1fr); /* дві колонки на середніх екранах */
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  header {
+    padding: 20px;
+  }
+  
+  .hero {
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero { flex-direction: column; }
-  .hero .art img { width: 100%; height: auto; margin-top: 20px; }
-  main.grid {
-    grid-template-columns: 1fr; /* одна колонка на мобільних */
+  .container {
+    padding: 15px;
   }
+  
+  header {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .brand .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  h1 {
+    font-size: 1.7rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .hero { 
+    flex-direction: column; 
+  }
+  
+  .hero .art img { 
+    width: 100%; 
+    height: auto; 
+    margin-top: 15px; 
+  }
+  
+  main.grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
   main .card img {
-    height: 200px; /* трохи менше для мобільних */
+    height: 200px;
+  }
+  
+  .works-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .audio-controls {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .audio-progress {
+    min-width: 150px;
   }
 }
 
-section.card { margin-top: 40px; padding: 30px; }
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  
+  header {
+    padding: 15px 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  .tags {
+    gap: 8px;
+  }
+  
+  .tag {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .audio-progress {
+    width: 100%;
+  }
+}
+
+section.card { 
+  margin-top: 40px; 
+  padding: 25px; 
+}
 
 footer {
   margin-top: 50px;
   color: var(--muted-text);
   font-size: 0.95rem;
   text-align: center;
-  padding: 30px;
+  padding: 25px;
   background: var(--card-bg);
   border-radius: 15px;
   border: 1px solid var(--border-color);
@@ -377,7 +492,7 @@ footer {
 .audio-player {
   display: flex;
   flex-direction: column;
-  align-items: center; /* выравнивание по центру */
+  align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.05);
   padding: 15px;
@@ -385,14 +500,14 @@ footer {
   border: 1px solid var(--border-color);
   box-shadow: 0 4px 15px var(--shadow-color);
   width: 100%;
-  text-align: center; /* чтобы текст и таймер тоже был по центру */
+  text-align: center;
 }
 
 .audio-controls {
   display: flex;
   align-items: center;
   gap: 12px;
-  justify-content: center; /* выравнивание кнопки и прогресса по центру */
+  justify-content: center;
   width: 100%;
 }
 
@@ -407,8 +522,14 @@ footer {
   cursor: pointer;
   flex-shrink: 0;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.audio-btn:hover { background: var(--hover-color); transform: scale(1.1); }
+.audio-btn:hover { 
+  background: var(--hover-color); 
+  transform: scale(1.1); 
+}
 
 .audio-progress {
   flex: 1;
@@ -417,6 +538,7 @@ footer {
   border-radius: 3px;
   cursor: pointer;
   position: relative;
+  min-width: 100px;
 }
 
 .audio-progress-bar {
@@ -430,8 +552,9 @@ footer {
 .audio-time {
   font-size: 0.8rem;
   color: var(--muted-text);
-  margin-top: 8px; /* отступ сверху для таймера */
-  text-align: center; /* по центру */
+  margin-top: 8px;
+  text-align: center;
+  min-width: 120px;
 }
 
 .music-link {
@@ -477,8 +600,8 @@ footer {
       <h1>Італійські композитори Ренесансу</h1>
       <p class="lead">Від поліфонії Палестріни до перших опер Монтеверді — історія музичного відродження</p>
     </div>
-    <button class="btn ghost" onclick="window.print()">Друк</button>
   </div>
+  <button class="btn ghost" onclick="window.print()">Друк</button>
 </header>
 <section class="hero">
   <div class="text card">
@@ -515,8 +638,8 @@ footer {
           <div class="audio-progress" onclick="setProgress('palestrina', event)">
             <div class="audio-progress-bar" id="palestrina-progress"></div>
           </div>
-          <div class="audio-time" id="palestrina-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="palestrina-time">0:00 / 0:00</div>
         <audio id="palestrina-audio" src="videoplayback.weba"></audio>
       </div>
     </div>
@@ -527,8 +650,7 @@ footer {
     <h3>Клаудіо Монтеверді</h3>
     <img src="Без названия.webp" alt="">
 <p>(1567–1643) — народження опери</p>
-<p>Його опера <em>L'Orfeo</em> (1607) — перша велика опера в історії. Монтеверді поєднав в ній поліфонію Ренесансу з новими драматичними виразними засобами, створивши перший справжній музичний театр. Він активно експериментував з контрастом голосів і оркестрового супроводу, розвивав жанр мадригала, додавав емоційність та виразність у вокальні партії. Його роботи вплинули на наступні покоління
-
+<p>Його опера <em>L'Orfeo</em> (1607) — перша велика опера в історії. Монтеверді поєднав в ній поліфонію Ренесансу з новими драматичними виразними засобами, створивши перший справжній музичний театр. Він активно експериментував з контрастом голосів і оркестрового супроводу, розвивав жанр мадригала, додавав емоційність та виразність у вокальні партії. Його роботи вплинули на наступні покоління композиторів.</p>
     <div class="listen-section">
       <h4>🎵 L'Orfeo - Toccata</h4>
       <div class="audio-player" id="player-monteverdi">
@@ -537,8 +659,8 @@ footer {
           <div class="audio-progress" onclick="setProgress('monteverdi', event)">
             <div class="audio-progress-bar" id="monteverdi-progress"></div>
           </div>
-          <div class="audio-time" id="monteverdi-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="monteverdi-time">0:00 / 0:00</div>
         <audio id="monteverdi-audio" src="monteverdi.mp4"></audio>
       </div>
     </div>
@@ -549,7 +671,7 @@ footer {
     <h3>Джованні Габріелі</h3>
     <img src="3.webp" alt="">
     <p>(1557–1612) — венеційський звук простору</p>
-<p>У соборі Святого Марка створював музику для кількох хорів, що співали одночасно, створюючи об’ємний ефект. Габріелі майстерно поєднував різні інструменти та голоси, використовуючи просторову акустику храму, щоб підсилити драматизм звучання. Його композиції відзначаються яскравими контрастами динаміки, ритмічними варіаціями та величною святковою атмосферою, що вплинула на розвиток венеційської школи та європейської музики того часу.</p>
+<p>У соборі Святого Марка створював музику для кількох хорів, що співали одночасно, створюючи об'ємний ефект. Габріелі майстерно поєднував різні інструменти та голоси, використовуючи просторову акустику храму, щоб підсилити драматизм звучання. Його композиції відзначаються яскравими контрастами динаміки, ритмічними варіаціями та величною святковою атмосферою, що вплинула на розвиток венеційської школи та європейської музики того часу.</p>
     <div class="listen-section">
       <h4>🎺 Canzoni per sonare</h4>
       <div class="audio-player" id="player-gabrieli">
@@ -558,8 +680,8 @@ footer {
           <div class="audio-progress" onclick="setProgress('gabrieli', event)">
             <div class="audio-progress-bar" id="gabrieli-progress"></div>
           </div>
-          <div class="audio-time" id="gabrieli-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="gabrieli-time">0:00 / 0:00</div>
         <audio id="gabrieli-audio" src="Canzoni per sonare.m4a"></audio>
       </div>
     </div>
@@ -579,8 +701,8 @@ footer {
           <div class="audio-progress" onclick="setProgress('marenzio', event)">
             <div class="audio-progress-bar" id="marenzio-progress"></div>
           </div>
-          <div class="audio-time" id="marenzio-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="marenzio-time">0:00 / 0:00</div>
         <audio id="marenzio-audio" src="marenzio.m4a"></audio>
       </div>
     </div>
@@ -591,7 +713,7 @@ footer {
     <h3>Орландо ді Лассо</h3>
     <img src="5.webp" alt="">
     <p>(1532–1594) — універсальний майстер поліфонії</p>
-<p>Один із найпопулярніших композиторів XVI століття, що писав релігійні й світські твори. Лассо відзначався універсальністю стилю та майстерністю у поліфонії, поєднуючи витончену гармонію з емоційною виразністю. Його твори включають меси, мотети, мадригали та світські пісні, які демонструють глибоке розуміння людських почуттів та драматичної напруги. Він вплину
+<p>Один із найпопулярніших композиторів XVI століття, що писав релігійні й світські твори. Лассо відзначався універсальністю стилю та майстерністю у поліфонії, поєднуючи витончену гармонію з емоційною виразністю. Його твори включають меси, мотети, мадригали та світські пісні, які демонструють глибоке розуміння людських почуттів та драматичної напруги. Він вплинув на розвиток музики по всій Європі.</p>
     <div class="listen-section">
       <h4>🎵 Matona mia cara</h4>
       <div class="audio-player" id="player-lasso">
@@ -600,8 +722,8 @@ footer {
           <div class="audio-progress" onclick="setProgress('lasso', event)">
             <div class="audio-progress-bar" id="lasso-progress"></div>
           </div>
-          <div class="audio-time" id="lasso-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="lasso-time">0:00 / 0:00</div>
         <audio id="lasso-audio" src="lasso.mp4"></audio>
       </div>
     </div>
@@ -621,16 +743,13 @@ footer {
           <div class="audio-progress" onclick="setProgress('caccini', event)">
             <div class="audio-progress-bar" id="caccini-progress"></div>
           </div>
-          <div class="audio-time" id="caccini-time">0:00 / 0:00</div>
         </div>
+        <div class="audio-time" id="caccini-time">0:00 / 0:00</div>
         <audio id="caccini-audio" src="caccini.mp4"></audio>
       </div>
     </div>
   </article>
 </main>
-
-
-
 
 <!-- Секція для прослуховування -->
 <section class="card">
@@ -675,10 +794,7 @@ footer {
   </div>
 </section>
 
-<!-- Інші секції... -->
-
 <footer>
-
   <p>Матеріали сайту призначені для освітніх цілей.</p>
   <div class="tags" style="justify-content: center; margin-top: 15px;">
     <a href="https://imslp.org" target="_blank" class="tag">IMSLP - Вільні ноти</a>
@@ -688,89 +804,6 @@ footer {
 </div>
 
 <script>
-// Простий аудіо плеєр для демонстрації
-const audioData = {
-  palestrina: {
-    duration: 272, // секунди
-    currentTime: 0,
-    playing: false,
-    interval: null
-  },
-  monteverdi: {
-    duration: 135, // секунди
-    currentTime: 0,
-    playing: false,
-    interval: null
-  }
-};
-
-function toggleAudio(composer) {
-  const data = audioData[composer];
-  
-  if (data.playing) {
-    // Пауза
-    data.playing = false;
-    clearInterval(data.interval);
-    document.querySelector(`#${composer}-player .audio-btn`).textContent = '▶';
-  } else {
-    // Відтворення
-    data.playing = true;
-    document.querySelector(`#${composer}-player .audio-btn`).textContent = '⏸';
-    
-    data.interval = setInterval(() => {
-      if (data.currentTime >= data.duration) {
-        stopAudio(composer);
-        return;
-      }
-      data.currentTime++;
-      updateProgress(composer);
-    }, 1000);
-  }
-}
-
-function stopAudio(composer) {
-  const data = audioData[composer];
-  data.playing = false;
-  data.currentTime = 0;
-  clearInterval(data.interval);
-  document.querySelector(`#${composer}-player .audio-btn`).textContent = '▶';
-  updateProgress(composer);
-}
-
-function updateProgress(composer) {
-  const data = audioData[composer];
-  const progress = (data.currentTime / data.duration) * 100;
-  const progressBar = document.getElementById(`${composer}-progress`);
-  const timeDisplay = document.getElementById(`${composer}-time`);
-  
-  progressBar.style.width = `${progress}%`;
-  
-  const currentTimeStr = formatTime(data.currentTime);
-  const durationStr = formatTime(data.duration);
-  timeDisplay.textContent = `${currentTimeStr} / ${durationStr}`;
-}
-
-function setProgress(composer, event) {
-  const data = audioData[composer];
-  const progressBar = event.currentTarget;
-  const rect = progressBar.getBoundingClientRect();
-  const percent = (event.clientX - rect.left) / rect.width;
-  
-  data.currentTime = Math.floor(percent * data.duration);
-  updateProgress(composer);
-}
-
-function formatTime(seconds) {
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Ініціалізація прогресу
-updateProgress('palestrina');
-updateProgress('monteverdi');
-
-
 const composers = ['palestrina','monteverdi','gabrieli','marenzio','lasso','caccini'];
 
 function toggleAudio(composer) {
@@ -821,6 +854,13 @@ function setProgress(composer, e){
   updateProgress(composer);
 }
 
+// Инициализация прогресса для всех композиторов
+composers.forEach(composer => {
+  const audio = document.getElementById(`${composer}-audio`);
+  audio.addEventListener('loadedmetadata', () => {
+    updateProgress(composer);
+  });
+});
 </script>
 </body>
 </html>
